@@ -1,4 +1,4 @@
-package com.algaworks.algafood.jpa;
+package com.algaworks.algafood.jpa.estado;
 
 import java.util.List;
 
@@ -7,10 +7,10 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContext;
 
 import com.algaworks.algafood.AlgafoodDiApplication;
-import com.algaworks.algafood.domain.model.Cozinha;
-import com.algaworks.algafood.domain.repository.CozinhaRepository;
+import com.algaworks.algafood.domain.model.Estado;
+import com.algaworks.algafood.domain.repository.EstadoRepository;
 
-public class ConsultarCozinhaMain {
+public class ConsultarEstadoMain {
 
 	public static void main(String[] args) {
 		
@@ -18,14 +18,17 @@ public class ConsultarCozinhaMain {
 				.web(WebApplicationType.NONE)
 				.run(args);
 		
-		CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
 		
-		List<Cozinha> cozinhas = cozinhaRepository.lista();
+		EstadoRepository estadoRepository = applicationContext.getBean(EstadoRepository.class);
 		
-		for(Cozinha cozinha : cozinhas) {
-			System.out.println(cozinha.getNome());
+		List<Estado> estados = estadoRepository.listar();
+		
+		
+		for(Estado estado : estados) {
+			System.out.printf("Todos os %d - %s\n", estado.getId(), estado.getNome());
 		}
 		
+		
 	}
-	
+
 }
